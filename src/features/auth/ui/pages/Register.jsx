@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { User, Mail, Lock, RefreshCw, CreditCard, Smartphone } from "lucide-react";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,10 +17,9 @@ export default function Register() {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Create account", form);
-  };
+
+
+  const {errors,handleSubmit,onRegisterSubmit,register} = useAuth();
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
@@ -74,7 +74,7 @@ export default function Register() {
               Step into the stadium. Get started below.
             </p>
 
-            <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+            <form onSubmit={handleSubmit(onRegisterSubmit)} className="mt-6 space-y-5">
               <div>
                 <label className="block text-[11px] font-semibold tracking-wide text-slate-500 mb-1.5">
                   FULL NAME
@@ -83,8 +83,7 @@ export default function Register() {
                   <input
                     type="text"
                     placeholder="James Anderson"
-                    value={form.name}
-                    onChange={handleChange("name")}
+                    {...register("name")}
                     className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
                     required
                   />
@@ -100,8 +99,7 @@ export default function Register() {
                   <input
                     type="email"
                     placeholder="james@stadium.com"
-                    value={form.email}
-                    onChange={handleChange("email")}
+                    {...register("email")}
                     className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
                     required
                   />
@@ -118,8 +116,7 @@ export default function Register() {
                     <input
                       type={showPassword ? "text" : "password"}
                       placeholder="••••••••"
-                      value={form.password}
-                      onChange={handleChange("password")}
+                     {...register("password")}
                       className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
                       required
                     />
