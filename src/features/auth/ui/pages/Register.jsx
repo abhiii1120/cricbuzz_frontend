@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
 import LeftComponent from "../common/LeftComponent";
+import FormInput from "@/components/FormInput";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -33,7 +34,7 @@ export default function Register() {
       {/* Main content */}
       <main className="flex-1 justify-center items-center flex bg-linear-to-br from-slate-50 to-emerald-50/40 px-6 ">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-start">
-          {/* Left copy */}
+          {/* Left container */}
           <div className="md:flex items-end justify-center h-full w-full pb-8 hidden">
             <LeftComponent
               mainText={leftComponentData.mainText}
@@ -52,53 +53,27 @@ export default function Register() {
               onSubmit={handleSubmit(onRegisterSubmit)}
               className="mt-6 space-y-5"
             >
-              <div>
-                <label className="block text-[11px] font-semibold tracking-wide text-slate-500 mb-1.5">
-                  FULL NAME
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="James Anderson"
-                    {...register("name")}
-                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
-                    required
-                  />
-                  <User className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2" />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-semibold tracking-wide text-slate-500 mb-1.5">
-                  EMAIL ADDRESS
-                </label>
-                <div className="relative">
-                  <input
-                    type="email"
-                    placeholder="james@stadium.com"
-                    {...register("email")}
-                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
-                    required
-                  />
-                  <Mail className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2" />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-semibold tracking-wide text-slate-500 mb-1.5">
-                  PASSWORD
-                </label>
-                <div className="relative">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="••••••••"
-                    {...register("password")}
-                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
-                    required
-                  />
-                  <Lock className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2" />
-                </div>
-              </div>
+              <FormInput
+                label={"User Name"}
+                icon={User}
+                placeholder="Virat kholi"
+                error={errors.name}
+                {...register("name", { required: "Name is required" })}
+              />
+              <FormInput
+                label={"Email"}
+                icon={Mail}
+                placeholder="kholi@stadium.com"
+                error={errors.email}
+                {...register("email", { required: "Email is required" })}
+              />
+              <FormInput
+                label={"password"}
+                type="password"
+                placeholder="••••••••"
+                error={errors.password}
+                {...register("password", { required: "Email is required" ,minLength:{value:6 , message:'minimum 6 characters are required'}})}
+              />
 
               <label className="flex items-start gap-2 text-sm text-slate-600">
                 <input type="checkbox" className="mt-0.5 accent-emerald-700" />
@@ -131,7 +106,6 @@ export default function Register() {
           </div>
         </div>
       </main>
-
     </div>
   );
 }
