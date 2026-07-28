@@ -10,11 +10,12 @@ import {
 import { useAuth } from "../../hooks/useAuth";
 import LeftComponent from "../common/LeftComponent";
 import FormInput from "@/components/FormInput";
+import Button from "@/components/Button";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
 
-  const { errors, handleSubmit, onRegisterSubmit, register } = useAuth();
+  const { errors, handleSubmit, onRegisterSubmit, register, navigate } = useAuth();
 
   let leftComponentData = {
     mainText: "Experience the Game in High-Density Precision.",
@@ -81,22 +82,17 @@ export default function Register() {
                 insights.
               </label>
 
-              <button
-                type="submit"
-                className="w-full bg-[#0a3d31] hover:bg-[#0d4a3c] text-white font-semibold tracking-wide text-sm py-3 rounded-lg transition"
-              >
-                CREATE ACCOUNT
-              </button>
+              <Button label={'CREATE ACCOUNT'}/>
             </form>
 
             <div className="mt-5 border-t border-slate-100 pt-4 text-center text-sm text-slate-500">
               Already have a profile?{" "}
-              <a
-                href="/login"
-                className="text-emerald-700 font-semibold hover:underline"
+              <p
+                onClick={() => navigate('/login')}
+                className="text-emerald-700 font-semibold hover:underline inline cursor-pointer"
               >
                 Login
-              </a>
+              </p>
             </div>
 
             <div className="mt-6 flex items-center justify-center gap-6 opacity-30">

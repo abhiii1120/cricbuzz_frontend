@@ -18,6 +18,7 @@ export let useAuth = () => {
         handleSubmit,
         errors,
         onLoginSubmit,
-        onRegisterSubmit
+        onRegisterSubmit,
+        navigate
     }
 }
