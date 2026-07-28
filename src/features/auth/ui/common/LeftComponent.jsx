@@ -16,7 +16,7 @@ const LeftComponent = ({ mainText, subText, cardArr }) => {
       <div className="mt-8 grid grid-cols-2 gap-8 max-w-md">
         {cardArr.map((item, idx) => {
           return (
-            <Card mainText={item?.mainText} subText={item?.subText}/>
+            <Card key={idx} mainText={item?.mainText} subText={item?.subText}/>
           );
         })}
       </div>
