@@ -17,4 +17,14 @@ export let registerUser = createAsyncThunk("auth/register",async (credentials,th
     } catch (error) {
         return thunkApi.rejectWithValue(error)
     }
+});
+
+export let userDetails = createAsyncThunk("auth/me",async (_,thunkApi) => {
+    try {
+        let res = await axiosInstance.get("/auth/me");
+        console.log(res)
+        return res.data.data;
+    } catch (error) {
+        return thunkApi.rejectWithValue(error);
+    }
 })
