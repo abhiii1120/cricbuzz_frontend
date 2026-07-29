@@ -15,7 +15,8 @@ import Button from "@/components/Button";
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
 
-  const { errors, handleSubmit, onRegisterSubmit, register, navigate } = useAuth();
+  const { errors, handleSubmit, onRegisterSubmit, register, navigate } =
+    useAuth();
 
   let leftComponentData = {
     mainText: "Experience the Game in High-Density Precision.",
@@ -73,7 +74,13 @@ export default function Register() {
                 type="password"
                 placeholder="••••••••"
                 error={errors.password}
-                {...register("password", { required: "Email is required" ,minLength:{value:6 , message:'minimum 6 characters are required'}})}
+                {...register("password", {
+                  required: "Email is required",
+                  minLength: {
+                    value: 6,
+                    message: "minimum 6 characters are required",
+                  },
+                })}
               />
 
               <label className="flex items-start gap-2 text-sm text-slate-600">
@@ -82,13 +89,13 @@ export default function Register() {
                 insights.
               </label>
 
-              <Button label={'CREATE ACCOUNT'}/>
+              <Button label={"CREATE ACCOUNT"} />
             </form>
 
             <div className="mt-5 border-t border-slate-100 pt-4 text-center text-sm text-slate-500">
               Already have a profile?{" "}
               <p
-                onClick={() => navigate('/login')}
+                onClick={() => navigate("/login")}
                 className="text-emerald-700 font-semibold hover:underline inline cursor-pointer"
               >
                 Login
