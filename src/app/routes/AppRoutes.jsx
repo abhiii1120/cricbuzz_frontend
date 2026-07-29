@@ -32,7 +32,7 @@ const AppRoutes = () => {
     {
         path:'/dashboard',
         element:<ProtectedRoutes/>,
-        children=[
+        children:[
             {
                 path:'',
                 element:<DashboardLayout/>,
