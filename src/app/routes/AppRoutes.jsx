@@ -6,7 +6,7 @@ import Login from "@/features/auth/ui/pages/Login";
 import AuthLayout from "../layouts/AuthLayout";
 import ProtectedRoutes from "../protectedRoutes/ProtectedRoutes";
 import DashboardLayout from "../layouts/DashboardLayout";
-import Dashboard from "@/features/dashboard/pages/Dashboard";
+import Dashboard from "@/features/dashboard/ui/pages/Dashboard";
 import { useDispatch } from "react-redux";
 import { userDetails } from "@/features/auth/state/authAction";
 const AppRoutes = () => {

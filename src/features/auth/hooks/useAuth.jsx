@@ -20,6 +20,11 @@ export let useAuth = () => {
     dispatch(loginUser(data));
   };
 
+  const onGoogleLogin = () => {
+    window.location.href = "http://localhost:3000/api/auth/google";
+    console.log('clicked')
+  }
+
   return {
     register,
     handleSubmit,
@@ -27,5 +32,6 @@ export let useAuth = () => {
     onLoginSubmit,
     onRegisterSubmit,
     navigate,
+    onGoogleLogin,
   };
 };
