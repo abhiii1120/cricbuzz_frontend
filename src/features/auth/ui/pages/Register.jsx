@@ -11,11 +11,12 @@ import { useAuth } from "../../hooks/useAuth";
 import LeftComponent from "../common/LeftComponent";
 import FormInput from "@/components/FormInput";
 import Button from "@/components/Button";
+import {FcGoogle} from 'react-icons/fc';
+import IconButton from "@/components/IconButton";
 
 export default function Register() {
-  const [showPassword, setShowPassword] = useState(false);
 
-  const { errors, handleSubmit, onRegisterSubmit, register, navigate } =
+  const { errors, handleSubmit, onRegisterSubmit, register, navigate, onGoogleLogin } =
     useAuth();
 
   let leftComponentData = {
@@ -34,7 +35,7 @@ export default function Register() {
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
       {/* Main content */}
-      <main className="flex-1 justify-center items-center flex bg-linear-to-br from-slate-50 to-emerald-50/40 px-6 ">
+      <main className="flex-1 justify-center items-center flex bg-linear-to-tr from-slate-50 to-emerald-200/20 px-6 ">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-start">
           {/* Left container */}
           <div className="md:flex items-end justify-center h-full w-full pb-8 hidden">
@@ -102,9 +103,8 @@ export default function Register() {
               </p>
             </div>
 
-            <div className="mt-6 flex items-center justify-center gap-6 opacity-30">
-              <CreditCard className="w-6 h-6 text-slate-400" />
-              <Smartphone className="w-6 h-6 text-slate-400" />
+            <div className="mt-6 flex items-center justify-center gap-6 ">
+              <IconButton icon={FcGoogle} label={'Google'} onClick={() => onGoogleLogin()}/>
             </div>
           </div>
         </div>
