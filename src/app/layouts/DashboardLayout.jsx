@@ -1,10 +1,12 @@
-import React from 'react'
-import { Outlet } from 'react-router'
+import { SocketContext } from "@/context/socket.context";
+import React, { useContext } from "react";
+import { Outlet } from "react-router";
 
 const DashboardLayout = () => {
-  return (
-    <Outlet/>
-  )
-}
+  const  socket  = useContext(SocketContext);
+  console.log(socket);
 
-export default DashboardLayout
+  return <Outlet />;
+};
+
+export default DashboardLayout;
