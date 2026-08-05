@@ -6,6 +6,13 @@ const DashboardLayout = () => {
   const  socket  = useContext(SocketContext);
   console.log(socket);
 
+  socket.on("connected",() => {
+    console.log("server connected");
+    socket.emit("client:connected",JSON.stringify({
+      message:"hello from client"
+    }));
+  })
+
   return <Outlet />;
 };
 
