@@ -9,6 +9,13 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Dashboard from "@/features/dashboard/ui/pages/Dashboard";
 import { useDispatch } from "react-redux";
 import { userDetails } from "@/features/auth/state/authAction";
+import Matches from "@/features/match/pages/Matches";
+import Player from "@/features/player/pages/Player";
+import LiveDashboard from "@/features/live-dashboard/pages/LiveDashboard";
+import AdminHome from "@/features/admin/pages/AdminHome";
+import AppLayout from "../layouts/AppLayout";
+import AdminLayout from "../layouts/AdminLayout";
+import LandingPge from "@/features/landing_page/pages/LandingPge";
 const AppRoutes = () => {
   let dispatch = useDispatch();
 
@@ -19,38 +26,42 @@ const AppRoutes = () => {
   }, []);
   let router = createBrowserRouter([
     {
-      path: "/",
-      element: <PublicRoutes />,
+      path: "",
+      element: <AppLayout />,
       children: [
         {
-          path: "",
-          element: <AuthLayout />,
-          children: [
-            {
-              path: "",
-              element: <Register />,
-            },
-            {
-              path: "login",
-              element: <Login />,
-            },
-          ],
+          index: true,
+          element: <LandingPge />,
+        },
+        {
+          path:'dashboard',
+          element:<Dashboard/>
+        },
+        {
+          path: "match/:seriesId?",
+          element: <Matches />,
+        },
+        {
+          path: "login",
+          element: <Login />,
+        },
+        {
+          path: "player",
+          element: <Player />,
+        },
+        {
+          path: "live/:match_id",
+          element: <LiveDashboard />,
         },
       ],
     },
     {
-      path: "/dashboard",
-      element: <ProtectedRoutes />,
+      path: "",
+      element: <AdminLayout />,
       children: [
         {
           path: "",
-          element: <DashboardLayout />,
-          children: [
-            {
-              path: "",
-              element: <Dashboard />,
-            },
-          ],
+          element: <AdminHome />,
         },
       ],
     },

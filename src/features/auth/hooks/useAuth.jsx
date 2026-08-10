@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { loginUser, registerUser } from "../state/authAction";
 
 export let useAuth = () => {
@@ -25,6 +25,8 @@ export let useAuth = () => {
     console.log('clicked')
   }
 
+    const { pathname } = useLocation();
+
   return {
     register,
     handleSubmit,
@@ -33,5 +35,6 @@ export let useAuth = () => {
     onRegisterSubmit,
     navigate,
     onGoogleLogin,
+    pathname,
   };
 };
